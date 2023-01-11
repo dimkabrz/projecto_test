@@ -1,0 +1,24 @@
+.navBar{
+    display: flex;
+    margin: 15px;
+    justify-content: space-between;
+}
+.navBar_titles{
+    width: 25vw;
+    margin:10px;
+    border:1px solid teal;
+    text-align: center;
+    cursor: pointer;
+}
+.product_card{
+    display: flex;
+    margin: 15px;
+    justify-content: space-between;
+}
+.product_property{
+    width: 25vw;
+    margin:10px;
+    border:1px solid red;
+    text-align: center;
+    border-radius: 5px;
+}
