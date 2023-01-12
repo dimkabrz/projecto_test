@@ -1,70 +1,30 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Используя React, создать таблицу с 4 столбцами: название (текст), дата, сумма, номер телефона. В таблице нужна шапка и 15-20 любых тестовых строк. Нужно реализовать следующую логику:
+- по умолчанию, при первом рендере компонента сортировка осуществляется по полю "Название", по возрастанию
+- при нажатии на шапку любого столбца последовательно переключаются три возможных состояния сортировки: сортировка по возрастанию, сортировка по убыванию, отсутствие сортировки
+- сортировку можно включить сразу по нескольким столбцам, тогда значения должны сначала сортироваться по самому левому столбцу, затем (при совпадении значений) – по столбцу правее, и т.д.
+- если отключить сортировку во всех столбцах, строки таблицы должны расположиться в случайном порядке
 
-## Available Scripts
+Показать результат можно в любом удобном виде (файл, ссылка на github, на codebox и т.п.)
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1) вроде сделал- работает
 
-### `npm test`
+2) само по себе вроде работает, но у меня один стейт, он фиксируется для первичной 
+отрисовки уже с фильтрацией, соответственно если сразу после загрузки нажать фильтровать не по первому столбцу 
+то будет пиздец- и фильтр пойдет дальше просто по кругу- вверх, вниз, рандомный список, вверх, вниз, рандом
+а так быть не должно, каждый филтр должен быть независимым
+я пробовал завести стейт с объектом и по полям фильтровать- у меня не завелось
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3) не смог завести из за недоработок в пункте 2- нужно чтобы стейты были независимые, друг о друге знали
+но позволяли фильтровать отдельно, также соответственно не смог завести фильтр по двум полям что ты прислал
+и что я нашел. по факту создается ощущение что может быть 1 стейт и 1 пиздатая функция которая будет
+фильтровать все сразу
+потому что там требование- чтобы если схожие поля(я такие как раз сделал для теста), то фильтр должен сдвинуться
+на один столбец влево- там отфильтровать и далее погнать
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4) фул работает(ну вроде)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

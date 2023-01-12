@@ -25,53 +25,51 @@ const MainContainer = () => {
     ]
 
     const [sortingProducts, setSortingProduct] = useState([])
-
-    const [productValue, setProductValue] = useState('asc')
+    const [filterDirection, setFilterDirection] = useState('asc')
 
     const [sortingValue, setSortingValue] = useState('name')
-    const [newSortingValue, setNewSortingValue] = useState({name:false, date: false, amount:false, phone_number:false})
-
-    const testPhoneFilter = () => {
-        if(productValue === 'asc'){
-            setSortingProduct([...products].sort((a, b) =>  a[sortingValue]-b[sortingValue]))
-        }
-        else if(productValue === 'desc'){
-            setSortingProduct([...products].sort((a, b) => b[sortingValue]-a[sortingValue]) )
-        }
-        else if(productValue === ''){
-            setSortingProduct(products.sort(() => Math.random() - 0.5))
-        }
-    }
-
 
     const productSortHandler = (value) => {
         setSortingValue(value)
-        if(productValue === 'asc'){
-            setProductValue('desc')
+        if(filterDirection === 'asc'){
+            setFilterDirection('desc')
         }
-        else if(productValue === 'desc'){
-            setProductValue('')
+        else if(filterDirection === 'desc'){
+            setFilterDirection('')
             setSortingProduct(products)
         }
-        else if(productValue === ''){
-            setProductValue('asc')
+        else if(filterDirection === ''){
+           setFilterDirection('asc')
         }
     }
 
     const sortedProducts = () => {
-        if(productValue === 'asc'){
+        if(filterDirection === 'asc'){
             setSortingProduct([...products].sort((a, b) => a[sortingValue].localeCompare(b[sortingValue])))
-        //    a[sortingValue]-b[sortingValue]
         }
-        else if(productValue === 'desc'){
+        else if(filterDirection === 'desc'){
             setSortingProduct([...products].sort((a, b) => a[sortingValue].localeCompare(b[sortingValue])).reverse())
         }
-        else if(productValue === ''){
+        else if(filterDirection === ''){
             setSortingProduct(products.sort(() => Math.random() - 0.5))
+        }
+        if(sortingValue === 'amount' || sortingValue === 'phone_number'){
+            if(filterDirection === 'asc'){
+                setSortingProduct([...products].sort((a, b) => a[sortingValue] - b[sortingValue]))
+            }
+            else if(filterDirection === 'desc'){
+                setSortingProduct([...products].sort((a, b) => b[sortingValue]- a[sortingValue]))
+            }
+            else if(filterDirection === ''){
+                setSortingProduct(products.sort(() => Math.random() - 0.5))
+            }
         }
     }
 
-    useEffect(()=> sortedProducts(), [productValue])
+
+
+    console.log(filterDirection)
+    useEffect(()=> sortedProducts(), [filterDirection])
 
     return (
         <div>
@@ -86,7 +84,7 @@ const MainContainer = () => {
                 <span className={classes.navBar_titles} onClick={()=>productSortHandler('amount')}>
                     Стоимость
                 </span>
-                <span className={classes.navBar_titles} onClick={()=>setNewSortingValue({...newSortingValue, phone_number:true})}>
+                <span className={classes.navBar_titles} onClick={()=>productSortHandler('phone_number')}>
                     телефон
                 </span>
             </div>
