@@ -1,10 +1,10 @@
-import './App.css';
+import "./App.css";
 import MainContainer from "./MainContainer/MainContainer";
 
 function App() {
   return (
     <div className="App">
-        <MainContainer/>
+      <MainContainer />
     </div>
   );
 }
